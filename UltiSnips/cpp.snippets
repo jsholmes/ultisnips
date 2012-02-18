@@ -49,8 +49,21 @@ snippet tp "template <typename ..> (template)"
 template <typename ${1:_InputIter}>
 endsnippet
 
+# =======================================
+# === CUSTOM SNIPPETS START HERE ========
+# =======================================
+
 snippet tse "TS_ASSERT_EQUALS(a,b)" b
 TS_ASSERT_EQUALS(${1:arg_1}, ${2:arg_2});
 endsnippet
 
+snippet iter "iterator" b
+for (${1:vector}<${2:type}>::${3:const_}iterator ${4:it} = ${5:container}.begin(); $4 != $5.end(); ++$4) {
+${6}
+}
+endsnippet
+
+# =======================================
+# === CUSTOM SNIPPETS END HERE ==========
+# =======================================
 # vim:ft=snippets:
