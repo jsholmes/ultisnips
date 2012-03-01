@@ -57,6 +57,24 @@ snippet tse "TS_ASSERT_EQUALS(a,b)" b
 TS_ASSERT_EQUALS(${1:arg_1}, ${2:arg_2});
 endsnippet
 
+snippet tss "TS_ASSERT_SAME_S(a,b)" b
+TS_ASSERT_SAME_S(${1:arg_1}, ${2:arg_2});
+endsnippet
+
+snippet tsa "TS_ASSERT(a)" b
+TS_ASSERT(${1:assertion});
+endsnippet
+
+snippet test "CXX test case" b
+void test${1:Foo}() {
+    ${0}
+}
+endsnippet
+
+snippet tsno "TS_ASSERT_THROWS_NOTHING(...);" !b
+TS_ASSERT_THROWS_NOTHING(${VISUAL:expr/;/);/}
+endsnippet
+
 snippet iter "iterator" b
 for (${1:vector}<${2:type}>::${3:const_}iterator ${4:it} = ${5:container}.begin(); $4 != $5.end(); ++$4) {
 ${6}
