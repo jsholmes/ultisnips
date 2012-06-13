@@ -1539,6 +1539,10 @@ class VisualWithDefault_ExpandWithoutVisual(_VimTest):
     snippets = ("test", "h${VISUAL:world}b")
     keys = "test" + EX + "hi"
     wanted = "hworldbhi"
+class VisualWithDefaultWithSlashes_ExpandWithoutVisual(_VimTest):
+    snippets = ("test", r"h${VISUAL:\/\/ body}b")
+    keys = "test" + EX + "hi"
+    wanted = "h// bodybhi"
 class VisualWithDefault_ExpandWithVisual(_VimTest):
     snippets = ("test", "h${VISUAL:world}b")
     keys = "blablub" + ESC + "0v6l" + EX + "test" + EX
@@ -2080,6 +2084,35 @@ class No_Tab_Expand_ET_SW_TS(_No_Tab_Expand):
         self.send(":set noexpandtab\n")
     keys = "test" + EX
     wanted = "\t\tExpand\tme!\t"
+
+class _TabExpand_RealWorld(object):
+    snippets = ("hi",
+r"""hi
+`!p snip.rv="i1\n"
+snip.rv += snip.mkline("i1\n")
+snip.shift(1)
+snip.rv += snip.mkline("i2\n")
+snip.unshift(2)
+snip.rv += snip.mkline("i0\n")
+snip.shift(3)
+snip.rv += snip.mkline("i3")`
+snip.rv = repr(snip.rv)
+End""")
+
+class No_Tab_Expand_RealWorld(_TabExpand_RealWorld,_VimTest):
+    def _options_on(self):
+        self.send(":set noexpandtab\n")
+    def _options_off(self):
+        self.send(":set noexpandtab\n")
+    keys = "\t\thi" + EX
+    wanted = """\t\thi
+\t\ti1
+\t\ti1
+\t\t\ti2
+\ti0
+\t\t\t\ti3
+\t\tsnip.rv = repr(snip.rv)
+\t\tEnd"""
 
 
 class SnippetOptions_Regex_Expand(_VimTest):

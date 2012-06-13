@@ -41,6 +41,10 @@ class VimBuffer(object):
         before, after = as_unicode(line[:col]), as_unicode(line[col:])
         return before, after
 
+    @property
+    def nr(self):
+        return int(eval("bufnr('%')"))
+
     def cursor():
         """
         The current windows cursor. Note that this is 0 based in col and 0
@@ -221,7 +225,10 @@ def _unmap_select_mode_mapping():
             for m in maps:
                 # The first three chars are the modes, that might be listed.
                 # We are not interested in them here.
-                trig = m[3:].split()[0]
+                trig = m[3:].split()[0] if len(m[3:].split()) != 0 else None
+
+                if trig is None:
+                    continue
 
                 # The bar separates commands
                 if trig[-1] == "|":
