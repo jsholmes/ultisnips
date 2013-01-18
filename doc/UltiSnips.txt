@@ -85,9 +85,16 @@ They print '1' if the python version is compiled in, '0' if not.
 
 Test if Vim is compiled with python version 2.x: >
     :echo has("python")
+The python version Vim is linked agains can be found with: >
+    :py import sys; print(sys.version)
 
 Test if Vim is compiled with python version 3.x: >
     :echo has("python3")
+The python version Vim is linked agains can be found with: >
+    :py3 import sys; print(sys.version)
+
+Note that Vim is maybe not using your system wide installed python version, so
+make sure to check the Python version inside of Vim.
 
 UltiSnips attempts to autodetect which python version is compiled into Vim.
 Unfortunately, in some versions of Vim this detection does not work.
@@ -120,7 +127,7 @@ If you are a pathogen user, you can track the official mirror of UltiSnips on
 github: >
 
    $ cd ~/.vim/
-   $ git submodule add https://github.com/sirver/ultisnips bundle/ultisnips
+   $ git submodule add git://github.com/SirVer/ultisnips.git bundle/ultisnips
 
 See the pathogen documentation for more details on how to update a bundle.
 
@@ -139,6 +146,12 @@ Using bzr, checkout UltiSnips into a directory of your choice. >
 Then add this directory to your Vim runtime path by adding this line to your
 vimrc file. >
    set runtimepath+=~/.vim/ultisnips_rep
+
+UltiSnips also needs that Vim sources files from the ftdetect/ directory.
+Unfortunately, Vim only allows this directory in the .vim directory. You
+therefore have to symlink/copy the files: >
+   mkdir -p ~/.vim/ftdetect/
+   ln -s ~/.vim/ultisnips_rep/ftdetect/* ~/.vim/ftdetect/
 
 Restart Vim and UltiSnips should work. To access the help, use >
    :helptags ~/.vim/ultisnips_rep/doc
@@ -538,6 +551,10 @@ The options currently supported are: >
        replaced with spaces.) If this option is set, UltiSnips will ignore the
        Vim settings and insert the tab characters as is. This option is useful
        for snippets involved with tab delimited formats, for example.
+
+   s   Remove whitespace immediately before the cursor at the end of a line
+       before jumping to the next tabstop.  This is useful if there is a
+       tabstop with optional text at the end of a line.
 
 The end line is the 'endsnippet' keyword on a line by itself. >
 
@@ -1246,6 +1263,10 @@ Contributors listed in chronological order:
    aschrab - Aaron Schrab
    stardiviner - NagatoPain
    skeept - Jorge Rodrigues
+   buztard
+   stephenmckinney - Steve McKinney
+   Pedro Algarvio - s0undt3ch
+   Eric Van Dewoestine - ervandew 
 
 
 7.2 Snippets                                       *UltiSnips-contrisnippets*
@@ -1274,6 +1295,13 @@ Contributors listed in chronological order:
    Jacek Wysocki (exu)
    Alexander Kondratskiy (KholdStare)
    Martin Krauskopf (martin-krauskopf)
+   Theocrite (theocrite)
+   Ferdinand Majerech (kiith-sa)
+   Vivien Didelot
+   Øystein Walle (osse)
+   Pedro Algarvio (s0undt3ch)
+   Steven Humphrey (shumphrey)
+   Björn Winckler (b4winckler)
 
 Thank you for your support.
 
