@@ -100,6 +100,40 @@ endsnippet
 snippet ovfi
 override final
 endsnippet
+
+snippet keep
+// IWYU pragma: keep
+endsnippet
+
+snippet nodeclare
+// IWYU pragma: no_forward_declare 
+endsnippet
+
+snippet noinclude
+// IWYU pragma: no_include 
+endsnippet
+
+snippet name
+/// @name ${1:string}
+/// @{
+
+$0
+endsnippet
+
+snippet endn
+
+/// @}
+endsnippet
+
+snippet header
+// Confidential and Proprietary Information of Hudson River Trading LLC
+
+#pragma once
+
+
+endsnippet
+
+
 # =======================================
 # === CUSTOM SNIPPETS END HERE ==========
 # =======================================
