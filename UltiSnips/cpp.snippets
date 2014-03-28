@@ -106,11 +106,11 @@ snippet keep
 endsnippet
 
 snippet nodeclare
-// IWYU pragma: no_forward_declare 
+// IWYU pragma: no_forward_declare
 endsnippet
 
 snippet noinclude
-// IWYU pragma: no_include 
+// IWYU pragma: no_include
 endsnippet
 
 snippet name
@@ -130,6 +130,20 @@ snippet header
 
 #pragma once
 
+
+endsnippet
+
+snippet dbt "DebugTag Define" b
+DEBUG_TAG_DEFINE(${1:tag_name});
+#undef DEBUG_TAG_DEFAULT
+#define DEBUG_TAG_DEFAULT $1
+
+endsnippet
+
+snippet dbtex "DebugTag External" b
+DEBUG_TAG_EXTERNAL(${1:tag_name});
+#undef DEBUG_TAG_DEFAULT
+#define DEBUG_TAG_DEFAULT $1
 
 endsnippet
 
